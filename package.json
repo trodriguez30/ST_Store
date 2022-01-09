@@ -1,8 +1,13 @@
 {
-  "name": "state-management-store",
+  "name": "st-store",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "Pluralsight course: Managing React State",
+  "keywords": [
+    "state",
+    "react-router",
+    "react",
+    "hooks"
+  ],
   "main": "src/index.js",
   "dependencies": {
     "dotenv": "10.0.0",
