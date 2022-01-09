@@ -1,14 +1,7 @@
-const baseUrl = process.env.REACT_APP_API_BASE_URL;
-
-export async function getShippingAddress(userId) {
-  return fetch(baseUrl + "shippingAddress/" + userId).then((response) => {
-    if (response.ok) return response.json();
-    throw response;
-  });
-}
+import requestDictionary from "./requestDictionary";
 
 export async function saveShippingAddress(address) {
-  return fetch(baseUrl + "shippingAddress", {
+  return fetch(requestDictionary.shipping.saveAddress, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

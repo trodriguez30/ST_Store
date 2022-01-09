@@ -2,8 +2,10 @@ import React, { useMemo } from "react";
 import requestDictionary from "../services/requestDictionary";
 import useFetchAll from "../hooks/useFetchAll";
 import Spinner from "../components/Spinner";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart({ cart, updateQuantity }) {
+  const navigate = useNavigate();
   const urls = cart.map((i) => requestDictionary.products.detailsById(i.id));
   const { data: products, loading, error } = useFetchAll(urls);
 
@@ -56,6 +58,14 @@ export default function Cart({ cart, updateQuantity }) {
           : "No items added"}
       </h1>
       <ul>{cart.map(renderItem)}</ul>
+      {numItemsInCart > 0 && (
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate("/checkout")}
+        >
+          Checkout
+        </button>
+      )}
     </section>
   );
 }

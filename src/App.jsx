@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Details from "./pages/Details";
+import Checkout from "./pages/Checkout";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -53,6 +54,10 @@ export default function App() {
             <Route
               path="/cart"
               element={<Cart cart={cart} updateQuantity={updateQuantity} />}
+            />
+            <Route
+              path="/checkout"
+              element={<Checkout cart={cart} emptyCart={() => setCart([])} />}
             />
           </Routes>
         </main>
