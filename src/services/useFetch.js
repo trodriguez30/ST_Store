@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 
-const baseUrl = "https://28dxn.sse.codesandbox.io/";
-
 export default function useFetch(url) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -10,7 +8,7 @@ export default function useFetch(url) {
   useEffect(() => {
     async function init() {
       try {
-        const response = await fetch(baseUrl + url);
+        const response = await fetch(url);
         if (response.ok) {
           const json = await response.json();
           setData(json);
@@ -23,14 +21,8 @@ export default function useFetch(url) {
         setLoading(false);
       }
     }
+
     init();
-
-    /* const timer = setTimeout(() => {
-      init();
-    }, 1000);
-
-    return () => clearTimeout(timer);
-    */
   }, [url]);
 
   return {

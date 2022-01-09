@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import PageNotFound from "./PageNotFound";
 
 import Spinner from "../components/Spinner";
 import useFetch from "../services/useFetch";
+import requestDictionary from "../services/requestDictionary";
 
 export default function Products() {
   const [size, setSize] = useState("");
   const { category } = useParams();
 
   const { data: products, loading, error } = useFetch(
-    `products?category=${category}`
+    requestDictionary.products.byCategory(category)
   );
 
   function renderProduct(p) {
     return (
       <div key={p.id} className="product">
-        <a href="/">
+        <Link to={`/${category}/${p.id}`}>
           <img src={`/images/${p.image}`} alt={p.name} />
           <h3>{p.name}</h3>
           <p>${p.price}</p>
-        </a>
+        </Link>
       </div>
     );
   }
