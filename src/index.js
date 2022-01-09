@@ -1,11 +1,16 @@
 import ReactDOM from "react-dom";
 
 import App from "./App";
-import ErrorBoundary from "./ErrorBoundary";
+import ErrorBoundary from "./pages/ErrorBoundary";
+
+import { BrowserRouter } from "react-router-dom";
+
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <ErrorBoundary>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </ErrorBoundary>,
   rootElement
 );
