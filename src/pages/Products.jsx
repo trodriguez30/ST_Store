@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
 
 import Spinner from "../components/Spinner";
-import useFetch from "../services/useFetch";
+import useFetch from "../hooks/useFetch";
 import requestDictionary from "../services/requestDictionary";
 
 export default function Products() {
