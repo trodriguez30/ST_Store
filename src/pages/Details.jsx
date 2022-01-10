@@ -5,7 +5,7 @@ import Spinner from "../components/Spinner";
 import PageNotFound from "./PageNotFound";
 import requestDictionary from "../services/requestDictionary";
 
-export default function Details({ addToCart }) {
+export default function Details({ dispatch }) {
   const [sku, setSku] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export default function Details({ addToCart }) {
         <button
           className="btn btn-primary"
           onClick={() => {
-            addToCart(id, sku);
+            dispatch({ type: "ADD_TO_CART", payload: { id, sku } });
             navigate("/cart");
           }}
           disabled={!sku}
