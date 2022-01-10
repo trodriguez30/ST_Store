@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import useMountedState from "./useMountedState";
 
 export default function useFetch(url) {
+  const isMounted = useMountedState();
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,19 +13,19 @@ export default function useFetch(url) {
         const response = await fetch(url);
         if (response.ok) {
           const json = await response.json();
-          setData(json);
+          if (isMounted()) setData(json);
         } else {
           throw response;
         }
       } catch (e) {
-        setError(e);
+        if (isMounted()) setError(e);
       } finally {
-        setLoading(false);
+        if (isMounted()) setLoading(false);
       }
     }
 
     init();
-  }, [url]);
+  }, [url, isMounted]);
 
   return {
     data,
