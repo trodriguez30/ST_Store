@@ -1,10 +1,15 @@
 import React, { useMemo } from "react";
+
+import { useNavigate } from "react-router-dom";
+
 import requestDictionary from "../services/requestDictionary";
 import useFetchAll from "../hooks/useFetchAll";
 import Spinner from "../components/Spinner";
-import { useNavigate } from "react-router-dom";
 
-export default function Cart({ cart, dispatch }) {
+import { useCartContext } from "../context/cartContext";
+
+export default function Cart() {
+  const { cart, dispatch } = useCartContext();
   const navigate = useNavigate();
   const urls = cart.map((i) => requestDictionary.products.detailsById(i.id));
   const { data: products, loading, error } = useFetchAll(urls);

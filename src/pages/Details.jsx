@@ -4,8 +4,10 @@ import useFetch from "../hooks/useFetch";
 import Spinner from "../components/Spinner";
 import PageNotFound from "./PageNotFound";
 import requestDictionary from "../services/requestDictionary";
+import { useCartContext } from "../context/cartContext";
 
-export default function Details({ dispatch }) {
+export default function Details() {
+  const { dispatch } = useCartContext();
   const [sku, setSku] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
